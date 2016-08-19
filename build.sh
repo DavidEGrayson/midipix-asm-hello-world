@@ -7,7 +7,7 @@ x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
 x86_64-nt64-midipix-as -o hello.o hello.s
 
 x86_64-nt64-midipix-ld \
-  --entry _start \
+  --entry _startz \
   --image-base 0x1920000 \
   --subsystem windows \
   --exclude-symbols=__EH_FRAME_BEGIN__,__dso_handle,_init,_fini,__so_entry_point,dso_main_routine \
@@ -21,7 +21,7 @@ x86_64-nt64-midipix-ld \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
 
-x86_64-nt64-midipix-strip hello.exe
+# x86_64-nt64-midipix-strip hello.exe
 
 sha256sum hello.exe
 

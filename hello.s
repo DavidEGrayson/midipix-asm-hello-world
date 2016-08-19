@@ -3,9 +3,43 @@
 .LC0: .ascii "hello world\0"
 .LC1: .ascii "hello\0"
 .LC2: .ascii "hello world!\0"
+
+    // Equivalent to _start in
+    // https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crt1.c
+    .section .rdata,"r"
+    .balign 4
+__disabled:
+    .space 4
+    .section .got$__crtopt_posix,"r"
+    .global __imp___crtopt_posix
+__imp___crtopt_posix:
+    .quad   __crtopt_posix
+    .linkonce discard
+    .text
+    .weak   __crtopt_posix
+    .set    __crtopt_posix,__disabled
+    .section .got$__crtopt_ttydbg,"r"
+    .global __imp___crtopt_ttydbg
+__imp___crtopt_ttydbg:
+    .quad   __crtopt_ttydbg
+    .linkonce discard
+    .text
+    .weak   __crtopt_ttydbg
+    .set    __crtopt_ttydbg,__disabled
+    .text
+    .globl _startz
+_startz:
+    mov __imp___crtopt_ttydbg(%rip), %rax
+    mov __imp___psx_init(%rip), %rdx
+    mov __imp_main, %rcx
+    mov (%rax), %r8d
+    mov __imp___crtopt_posix(%rip), %rax
+    or (%rax), %r8d
+    mov __imp___libc_entry_routine(%rip), %rax
+    rex.W jmpq *%rax
+
     .text
     .globl main
-    .def main
     .seh_proc main
 main:
 .LFB0:
