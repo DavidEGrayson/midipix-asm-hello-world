@@ -20,7 +20,7 @@ x86_64-nt64-midipix-ld \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
 
-# x86_64-nt64-midipix-strip hello.exe
+x86_64-nt64-midipix-strip hello.exe
 
 sha256sum hello.exe
 
