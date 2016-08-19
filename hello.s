@@ -1,3 +1,4 @@
+        .file "hello.s"
 	.section .rdata,"r"
 .LC0:
 	.ascii "hello worldz\0"
