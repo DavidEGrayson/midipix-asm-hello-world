@@ -1,3 +1,5 @@
+set -ue
+
 rm -f *.o *.so *.exe
 
 x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
@@ -13,10 +15,6 @@ x86_64-nt64-midipix-ld \
   /usr/x86_64-nt64-midipix/lib/crti.o \
   /usr/x86_64-nt64-midipix/lib/crt1.o \
   /usr/x86_64-nt64-midipix/lib/crtbegin.o \
-  -L/usr/x86_64-nt64-midipix/lib \
-  -L/usr/lib/gcc/x86_64-nt64-midipix/4.6.4 \
-  -L/usr/x86_64-nt64-midipix/lib \
-  -L/usr/x86_64-nt64-midipix/lib \
   hello.o \
   user32.dll.a \
   --no-as-needed -lc \
@@ -26,8 +24,6 @@ x86_64-nt64-midipix-ld \
   /usr/x86_64-nt64-midipix/lib/crtn.o \
   --no-as-needed -lc \
   --as-needed -lpsxscl
-
-
 
 if [ -n "$DEPLOYDIR" ]; then
   rm -fv $DEPLOYDIR/libpsxscl.so
