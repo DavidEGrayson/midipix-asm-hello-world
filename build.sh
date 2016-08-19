@@ -20,16 +20,17 @@ x86_64-nt64-midipix-ld \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
-  /usr/x86_64-nt64-midipix/lib/crtend.o \
   /usr/x86_64-nt64-midipix/lib/crtn.o \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
 
+x86_64-nt64-midipix-strip hello.exe
+
 sha256sum hello.exe
 
 if [ -n "$DEPLOYDIR" ]; then
-  rm -fv $DEPLOYDIR/libpsxscl.so
-  rm -fv $DEPLOYDIR/libc.so
-  rm -fv $DEPLOYDIR/hello.exe
-  cp -v /usr/x86_64-nt64-midipix/lib/lib{psxscl,c}.so hello.exe $DEPLOYDIR
+  rm -f $DEPLOYDIR/libpsxscl.so
+  rm -f $DEPLOYDIR/libc.so
+  rm -f $DEPLOYDIR/hello.exe
+  cp /usr/x86_64-nt64-midipix/lib/lib{psxscl,c}.so hello.exe $DEPLOYDIR
 fi
