@@ -17,13 +17,15 @@ x86_64-nt64-midipix-ld \
   /usr/x86_64-nt64-midipix/lib/crtbegin.o \
   hello.o \
   user32.dll.a \
-  --no-as-needed -lc \
-  --as-needed -lpsxscl \
-  --no-as-needed -lc \
+  --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
+  --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a \
+  --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   /usr/x86_64-nt64-midipix/lib/crtend.o \
   /usr/x86_64-nt64-midipix/lib/crtn.o \
-  --no-as-needed -lc \
-  --as-needed -lpsxscl
+  --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
+  --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
+
+sha256sum hello.exe
 
 if [ -n "$DEPLOYDIR" ]; then
   rm -fv $DEPLOYDIR/libpsxscl.so
