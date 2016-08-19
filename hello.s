@@ -1,6 +1,6 @@
 	.section .rdata,"r"
 .LC0:
-	.ascii "hello world\0"
+	.ascii "hello worldz\0"
 .LC1:
 	.ascii "hello\0"
 .LC2:
