@@ -5,6 +5,7 @@ rm -f *.o *.so *.exe
 x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
 
 x86_64-nt64-midipix-as -o hello.o hello.s
+x86_64-nt64-midipix-as -o crt1.o crt1.s
 
 x86_64-nt64-midipix-ld \
   --entry _start \
@@ -12,6 +13,7 @@ x86_64-nt64-midipix-ld \
   --subsystem windows \
   --exclude-symbols=__EH_FRAME_BEGIN__,__dso_handle,_init,_fini,__so_entry_point,dso_main_routine \
   -o hello.exe \
+  crt1.o \
   hello.o \
   user32.dll.a \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
