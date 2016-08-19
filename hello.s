@@ -27,8 +27,8 @@ __imp___crtopt_ttydbg:
     .weak   __crtopt_ttydbg
     .set    __crtopt_ttydbg,__disabled
     .text
-    .globl _startz
-_startz:
+    .globl _start
+_start:
     mov __imp___crtopt_ttydbg(%rip), %rax
     mov __imp___psx_init(%rip), %rdx
     mov __imp_main, %rcx
