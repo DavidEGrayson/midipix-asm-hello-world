@@ -12,15 +12,12 @@ x86_64-nt64-midipix-ld \
   --subsystem windows \
   --exclude-symbols=__EH_FRAME_BEGIN__,__dso_handle,_init,_fini,__so_entry_point,dso_main_routine \
   -o hello.exe \
-  /usr/x86_64-nt64-midipix/lib/crti.o \
   /usr/x86_64-nt64-midipix/lib/crt1.o \
-  /usr/x86_64-nt64-midipix/lib/crtbegin.o \
   hello.o \
   user32.dll.a \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
-  /usr/x86_64-nt64-midipix/lib/crtn.o \
   --no-as-needed /usr/x86_64-nt64-midipix/lib/libc.lib.a \
   --as-needed /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
 

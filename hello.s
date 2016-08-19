@@ -1,11 +1,8 @@
         .file "hello.s"
 	.section .rdata,"r"
-.LC0:
-	.ascii "hello worldz\0"
-.LC1:
-	.ascii "hello\0"
-.LC2:
-	.ascii "hello world!\0"
+.LC0:   .ascii "hello world\0"
+.LC1:   .ascii "hello\0"
+.LC2:   .ascii "hello world!\0"
 	.text
 	.globl	main
 	.def	main;	.scl	2;	.type	32;	.endef
