@@ -1,0 +1,3 @@
+LIBRARY "mylib.so"
+EXPORTS
+shared_string

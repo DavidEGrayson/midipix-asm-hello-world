@@ -25,7 +25,7 @@ main:
     call *%rax
     movl $0, %r9d
     leaq .LC1(%rip), %r8
-    leaq .LC0(%rip), %rdx
+    mov __imp_shared_string(%rip), %rdx
     movl $0, %ecx
     movq __imp_MessageBoxA(%rip), %rax
     call *%rax
