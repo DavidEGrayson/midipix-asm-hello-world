@@ -1,15 +1,16 @@
 # A simple shared library (DSO/DLL) for midipix, written in assembly.
 
     .file "mylib.s"
-    .globl shared_string
-    .section .got$shared_string, "r"
-    .global __imp_shared_string
-__imp_shared_string:
-    .quad shared_string
-    .data
-shared_string:
-    .ascii "wootz\0"
 
+# Define a string that we will export from the shared library.  If we
+# wanted it to be editable, we could just write ".data" before it, to
+# put it into the ".data" section, which is for initialized data.
+# Instead, we use two directives to put it into a .text section.
+#
+# Apparently the linker just exports this symbol from the .so by
+# default because it is shared.  There are probably options to control
+# that.
+#
 # Supposedly this drectve that GCC generates tells the linker to
 # export the shared_string symbol from the shared library, but it
 # seems to have no effect on the .so file at all.  The linker might be
@@ -17,6 +18,11 @@ shared_string:
 #
 #    .section .drectve
 #    .ascii " -export:\"shared_string\",data"
+    .text
+    .section .rdata, "w"
+    .globl shared_string
+shared_string:
+    .ascii "wootz\0"
 
 # This is called by Windows when the DSO is loaded or unloaded from a
 # process, or when threads are created or destroyed in the process.
