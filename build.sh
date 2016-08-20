@@ -2,10 +2,14 @@ set -ue
 
 rm -f *.o *.so *.exe
 
+x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
+
+x86_64-nt64-midipix-as -o mylib.o mylib.s
+x86_64-nt64-midipix-ld -shared --entry __so_entry_point --enable-auto-image-base --subsystem windows --exclude-symbols=__EH_FRAME_BEGIN__,__dso_handle,_init,_fini,__so_entry_point,dso_main_routine -o mylib.so /usr/x86_64-nt64-midipix/lib/crti.o /usr/x86_64-nt64-midipix/lib/crte.o /usr/x86_64-nt64-midipix/lib/crtbeginS.o -L/usr/x86_64-nt64-midipix/lib -L/usr/lib/gcc/x86_64-nt64-midipix/4.6.4 -L/usr/lib/gcc/x86_64-nt64-midipix/4.6.4/../../../../x86_64-nt64-midipix/lib -L/usr/x86_64-nt64-midipix/lib mylib.o -lc --no-as-needed -lc --as-needed -lpsxscl -lgcc_s -lgcc_s --no-as-needed -lc /usr/x86_64-nt64-midipix/lib/crtendS.o /usr/x86_64-nt64-midipix/lib/crtn.o -lc --no-as-needed -lc --as-needed -lpsxscl
+
 x86_64-nt64-midipix-gcc -shared mylib.c -o mylib.so
 x86_64-nt64-midipix-dlltool -l mylib.so.a -d mylib.def
 
-x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
 
 x86_64-nt64-midipix-as -o hello.o hello.s
 x86_64-nt64-midipix-as -o crt1.o crt1.s
