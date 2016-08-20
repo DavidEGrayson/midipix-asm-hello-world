@@ -6,12 +6,17 @@
     .global __imp_shared_string
 __imp_shared_string:
     .quad shared_string
-    .linkonce discard
     .data
 shared_string:
     .ascii "wootz\0"
-    .section .drectve
-    .ascii " -export:\"shared_string\",data"
+
+# Supposedly this drectve that GCC generates tells the linker to
+# export the shared_string symbol from the shared library, but it
+# seems to have no effect on the .so file at all.  The linker might be
+# smart enough to not need it.
+#
+#    .section .drectve
+#    .ascii " -export:\"shared_string\",data"
 
 # This is called by Windows when the DSO is loaded or unloaded from a
 # process, or when threads are created or destroyed in the process.

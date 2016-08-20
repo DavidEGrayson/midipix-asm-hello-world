@@ -7,6 +7,7 @@ rm -f *.o *.so *.exe
 x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
 
 x86_64-nt64-midipix-as -o mylib.o mylib.s
+
 x86_64-nt64-midipix-ld $LDFLAGS \
   -shared \
   --enable-auto-image-base \
@@ -29,7 +30,7 @@ x86_64-nt64-midipix-ld $LDFLAGS \
 
 # x86_64-nt64-midipix-strip hello.exe
 
-sha256sum hello.exe
+sha256sum mylib.so hello.exe
 
 if [ -n "$DEPLOYDIR" ]; then
   rm -f $DEPLOYDIR/mylib.so $DEPLOYDIR/libpsxscl.so $DEPLOYDIR/libc.so \
