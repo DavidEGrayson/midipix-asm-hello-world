@@ -10,7 +10,7 @@
 shared_string:
     .ascii "wootz\0"
     .section .drectve
-    .ascii " -export:\"shared_string\",data"
+    .ascii " -export:shared_string"
 
 # This is called by Windows when the DSO is loaded or unloaded from a
 # process, or when threads are created or destroyed in the process.
