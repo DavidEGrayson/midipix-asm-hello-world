@@ -9,14 +9,10 @@ x86_64-nt64-midipix-dlltool -l user32.dll.a -d user32.def
 x86_64-nt64-midipix-as -o mylib.o mylib.s
 x86_64-nt64-midipix-ld $LDFLAGS \
   -shared \
-  --entry __so_entry_point \
   --enable-auto-image-base \
-  -o mylib.so /usr/x86_64-nt64-midipix/lib/crti.o \
-  /usr/x86_64-nt64-midipix/lib/crte.o \
-  /usr/x86_64-nt64-midipix/lib/crtbeginS.o \
+  -o mylib.so \
+  /usr/x86_64-nt64-midipix/lib/crti.o \
   mylib.o \
-  /usr/x86_64-nt64-midipix/lib/crtendS.o \
-  /usr/x86_64-nt64-midipix/lib/crtn.o \
 
 x86_64-nt64-midipix-dlltool -l mylib.so.a -d mylib.def
 
