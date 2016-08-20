@@ -11,8 +11,7 @@ x86_64-nt64-midipix-ld $LDFLAGS \
   -shared \
   --enable-auto-image-base \
   -o mylib.so \
-  /usr/x86_64-nt64-midipix/lib/crti.o \
-  mylib.o \
+  mylib.o
 
 x86_64-nt64-midipix-dlltool -l mylib.so.a -d mylib.def
 
@@ -28,7 +27,7 @@ x86_64-nt64-midipix-ld $LDFLAGS \
   user32.dll.a \
   mylib.so.a \
   /usr/x86_64-nt64-midipix/lib/libc.lib.a \
-  /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a \
+  /usr/x86_64-nt64-midipix/lib/libpsxscl.lib.a
 
 # x86_64-nt64-midipix-strip hello.exe
 

@@ -23,18 +23,13 @@ shared_string:
 # For info about DLL entry points, see:
 # https://msdn.microsoft.com/en-us/library/windows/desktop/ms682596.aspx
 #
+# This function should return TRUE (1) if it succeeds and FALSE (0)
+# otherwise.
+#
 # This routine is normally defined in
 # https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
 #
-# The midipix implementation lets shared libraries define a function named
-# dso_main_routine if they want to run some code when the DLL is loaded.
-# The midipix checks if fdwReason equals DLL_PROCESS_ATTACH, and if so,
-# calls dso_main_routine, which is a weakly-defined routine that does
-# nothing by default.
-#
-# This function should return TRUE (1) if it succeeds and FALSE (0)
-# otherwise.  (The midipix implementation does not handle this
-# correctly as far as I can tell.)
+# I don't understand the midipix implementation; it seems wrong to me.
     .text
     .globl __so_entry_point
 __so_entry_point:
@@ -45,10 +40,40 @@ __so_entry_point:
 __dso_main_routine:
     ret
 
+# This data structure is normally defined in
+# https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crti.s
     .section .midipix
+    .ascii "e35ed272"
+    .ascii "9e55"
+    .ascii "46c1"
+    .ascii "8251"
+    .ascii "022a59e6c480"
+    .long 0
+    .long 1
+    .long 0
+    .long 0
+    .quad __CTOR_LIST__
+    .quad __DTOR_LIST__
+    .quad 0
+    .quad 1
+    .quad 2
+    .quad 3
+    .quad 4
+    .quad 5
+    .quad 6
+    .quad 7
+    .quad 8
+    .quad 9
+    .quad 10
+    .quad 11
+    .quad 12
+    .quad 13
+    .quad 14
+    .quad 15
 
 # This data structure is normally defined in
 # https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
+    .section .midipix
     .quad __so_entry_point
     .quad __dso_main_routine
     .quad 0
