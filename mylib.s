@@ -37,11 +37,13 @@ __so_entry_point:
     ret
 
 # Normally defined in https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
+# I don't think it serves any purpose yet.
 __dso_main_routine:
     ret
 
 # This data structure is normally defined in
 # https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crti.s
+# I don't think it serves any purpose yet.
     .section .midipix
     .ascii "e35ed272"
     .ascii "9e55"
@@ -73,6 +75,7 @@ __dso_main_routine:
 
 # This data structure is normally defined in
 # https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
+# I don't think it serves any purpose yet.
     .section .midipix
     .quad __so_entry_point
     .quad __dso_main_routine

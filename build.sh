@@ -16,13 +16,11 @@ x86_64-nt64-midipix-ld $LDFLAGS \
 x86_64-nt64-midipix-dlltool -l mylib.so.a -d mylib.def
 
 x86_64-nt64-midipix-as -o hello.o hello.s
-x86_64-nt64-midipix-as -o crt1.o crt1.s
 
 x86_64-nt64-midipix-ld $LDFLAGS \
   --entry _start \
   --image-base 0x1920000 \
   -o hello.exe \
-  crt1.o \
   hello.o \
   user32.dll.a \
   mylib.so.a \
