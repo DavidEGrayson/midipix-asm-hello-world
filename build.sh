@@ -10,6 +10,7 @@ x86_64-nt64-midipix-as -o mylib.o mylib.s
 
 x86_64-nt64-midipix-ld $LDFLAGS \
   -shared \
+  --entry __so_entry_point \
   --enable-auto-image-base \
   -o mylib.so \
   mylib.o
