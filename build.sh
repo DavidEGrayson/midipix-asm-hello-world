@@ -11,10 +11,14 @@ x86_64-nt64-midipix-ld $LDFLAGS \
   -shared \
   --entry __so_entry_point \
   --enable-auto-image-base \
-  -o mylib.so /usr/x86_64-nt64-midipix/lib/crti.o /usr/x86_64-nt64-midipix/lib/crte.o /usr/x86_64-nt64-midipix/lib/crtbeginS.o -L/usr/x86_64-nt64-midipix/lib -L/usr/lib/gcc/x86_64-nt64-midipix/4.6.4 -L/usr/lib/gcc/x86_64-nt64-midipix/4.6.4/../../../../x86_64-nt64-midipix/lib -L/usr/x86_64-nt64-midipix/lib mylib.o -lc --no-as-needed -lc --as-needed -lpsxscl -lgcc_s -lgcc_s --no-as-needed -lc /usr/x86_64-nt64-midipix/lib/crtendS.o /usr/x86_64-nt64-midipix/lib/crtn.o -lc --no-as-needed -lc --as-needed -lpsxscl
+  -o mylib.so /usr/x86_64-nt64-midipix/lib/crti.o \
+  /usr/x86_64-nt64-midipix/lib/crte.o \
+  /usr/x86_64-nt64-midipix/lib/crtbeginS.o \
+  mylib.o \
+  /usr/x86_64-nt64-midipix/lib/crtendS.o \
+  /usr/x86_64-nt64-midipix/lib/crtn.o \
 
 x86_64-nt64-midipix-dlltool -l mylib.so.a -d mylib.def
-
 
 x86_64-nt64-midipix-as -o hello.o hello.s
 x86_64-nt64-midipix-as -o crt1.o crt1.s
