@@ -2,27 +2,15 @@
 
     .file "mylib.s"
 
-# Define a string that we will export from the shared library.  If we
-# wanted it to be editable, we could just write ".data" before it, to
-# put it into the ".data" section, which is for initialized data.
-# Instead, we use two directives to put it into a .text section.
-#
-# Apparently the linker just exports this symbol from the .so by
-# default because it is shared.  There are probably options to control
-# that.
-#
-# Supposedly this drectve that GCC generates tells the linker to
-# export the shared_string symbol from the shared library, but it
-# seems to have no effect on the .so file at all.  The linker might be
-# smart enough to not need it.
-#
-#    .section .drectve
-#    .ascii " -export:\"shared_string\",data"
+# Define a string in the read-only data section and export it from the
+# shared library.
     .text
-    .section .rdata, "w"
+    .section .rdata, "r"
     .globl shared_string
 shared_string:
     .ascii "wootz\0"
+    .section .drectve
+    .ascii " -export:\"shared_string\",data"
 
 # This is called by Windows when the DSO is loaded or unloaded from a
 # process, or when threads are created or destroyed in the process.
@@ -34,9 +22,6 @@ shared_string:
 # For info about DLL entry points, see:
 # https://msdn.microsoft.com/en-us/library/windows/desktop/ms682596.aspx
 #
-# This function should return TRUE (1) if it succeeds and FALSE (0)
-# otherwise.
-#
 # This routine is normally defined in
 # https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
 #
@@ -44,7 +29,7 @@ shared_string:
     .text
     .globl __so_entry_point
 __so_entry_point:
-    mov $1, %eax
+    mov $1, %eax        # Return TRUE to indicate success.
     ret
 
 # Normally defined in https://github.com/midipix-project/mmglue/blob/main/crt/nt64/crte.s
